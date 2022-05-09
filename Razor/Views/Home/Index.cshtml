@@ -1,8 +1,100 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
-}
+    string cognome = "Morbin";
+    string nome = "Alec";
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    int sommaNumeri1aN(int n)
+    {
+        int somma = 0;
+        for(int i = 0; i <= n; i++)
+        {
+            somma += i;
+        }
+        return somma;
+    }
+
+    int contaOccorrenzeDiA(string frase)
+    {
+        int occorrenze = 0;
+        for (int i = 0; i < frase.Length; i++)
+        {
+            if (frase[i]=='a')
+            {
+                occorrenze++;
+            }
+        }
+        return occorrenze;
+    }
+
+    Random rnd = new Random();
+
+    List<int> lista = new List<int>();
+
+    for(int i = 0; i < 20; i++)
+    {
+        lista.Add(rnd.Next(1, 90));
+    }
+
+    string stampaTra20e70()
+    {
+        string ris = "";
+        foreach (int item in lista)
+        {
+            if (item >= 20 && item <= 70)
+            {
+                ris += item + " ";
+            }
+        }
+        return ris;
+    }
+}
+<div>
+    1. Dichiarare una variabile valorizzandola con il nostro nome.
+    Dichiarare un'altra variabile valorizzandola con il nostro cognome.
+    Stampare il nostro nome e cognome all'interno di un tag h2.
+
+    <h2>@nome @cognome</h2>
 </div>
+
+<div>
+    2. Creare una funzione che stampa la somma dei numeri che vanno da 1 a n (con n passato come parametro - n incluso)
+    Stampare dentro uno span il risultato.
+    <br/>@sommaNumeri1aN(5)
+</div>
+
+<div>
+    3. Contare quante volte la lettera a è presente nalla frase "nel mezzo del cammin di nostra vita" e stampare questo valore in pagina
+    <br/> @contaOccorrenzeDiA("nel mezzo del cammin di nostra vita")
+</div>
+
+<div>
+    4. Creare una List< int > di 20 numeri interi (generati random da 1 a 90, 1 e 90 inclusi) e mostrare in pagina solo i numeri compresi tra 20 e 70
+    <br /> @stampaTra20e70()
+</div>
+
+<div>
+    5. Stampare in pagina la data e l'ora attuale (usando la classe DateTime) con il formato anno-mese-giorno ore:minuti:secondi
+    <br /> @DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
+</div>
+
+<div>
+    6. Partendo dalla data di oggi (usando la classe DateTime) stampare in pagina
+    a. la data di 7 giorni fa
+    b. che giorno della settimana è oggi (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)
+    c. che giorno della settimana sarà nello stesso giorno e mese di oggi ma tra un anno (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)
+    <br />
+    @{
+        DateTime data = DateTime.Now;
+        data = data.AddDays(-7);
+    }
+    Data tra 7 giorni @data.ToString() <br />
+    @{
+        data = DateTime.Now;
+    }
+    Oggi è @data.DayOfWeek <br />
+    @{
+        data = data.AddYears(1);
+    }
+    Il @data.ToString() sarà di @data.DayOfWeek
+</div>
+
+
